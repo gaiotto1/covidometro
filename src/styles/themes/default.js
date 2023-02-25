@@ -7,4 +7,4 @@ export const defaultTheme = {
   'gray-200': '#4F4544',
 
   'red-100': '#EE6261',
-};
+}
