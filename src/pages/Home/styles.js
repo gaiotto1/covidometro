@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme['white-300']};
+  overflow: hidden;
 `
 
 export const ContainerTitle = styled.div`
@@ -20,11 +21,20 @@ export const WrapperTitleHome = styled.div`
   align-items: center;
   justify-content: space-between;
 
+  div {
+    width: 100%;
+  }
+
   h1 {
     font-size: 3rem;
     line-height: 3rem;
     font-weight: 700;
     color: ${(props) => props.theme['gray-200']};
+
+    @media (max-width: 400px) {
+      font-size: 2rem;
+      line-height: 2rem;
+    }
   }
 
   p {
@@ -42,4 +52,12 @@ export const WrapperTitleHome = styled.div`
     margin-top: 20px;
     margin-left: 20px;
   }
+`
+
+export const ContainerCards = styled.div`
+  width: 100%;
+  max-width: 788px;
+  height: auto;
+  margin: 0 auto;
+  padding: 20px 20px;
 `
