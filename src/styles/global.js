@@ -15,4 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  input, button, textarea {
+    font-family: 'Baloo 2', cursive;
+  }
 `

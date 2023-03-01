@@ -1,6 +1,7 @@
 import React from 'react'
 import { Header } from '../../components/Header'
 import { Card } from './components/Card'
+import { SearchForm } from './components/SearchForm'
 
 import {
   Container,
@@ -51,6 +52,8 @@ export function Home() {
           <img src={doctorsSvg} alt="Médicos" />
         </WrapperTitleHome>
       </ContainerTitle>
+
+      <SearchForm />
 
       <ContainerCards>
         {data.map((item, index) => (

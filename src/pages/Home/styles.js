@@ -14,8 +14,8 @@ export const ContainerTitle = styled.div`
 export const WrapperTitleHome = styled.div`
   width: 100%;
   max-width: 1210px;
-  padding: 20px 20px;
-  height: auto;
+  padding: 20px 20px 0px 20px;
+  height: 412px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -49,15 +49,20 @@ export const WrapperTitleHome = styled.div`
   img {
     width: 37%;
     max-width: 433px;
-    margin-top: 20px;
+    margin-top: 60px;
     margin-left: 20px;
+  }
+
+  @media (max-width: 320px) {
+    height: auto;
+    padding: 30px 20px;
   }
 `
 
 export const ContainerCards = styled.div`
   width: 100%;
-  max-width: 788px;
+  max-width: 826px;
   height: auto;
   margin: 0 auto;
-  padding: 20px 20px;
+  padding: 0px 20px;
 `
