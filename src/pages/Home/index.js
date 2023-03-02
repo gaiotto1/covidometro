@@ -15,8 +15,13 @@ import {
 import doctorsSvg from '../../assets/doctors.svg'
 
 export function Home() {
-  const { casesCovid, loading, loadInformationsCovid, searchCasesCovid } =
-    useCasesCovid()
+  const {
+    casesCovid,
+    loading,
+    error,
+    loadInformationsCovid,
+    searchCasesCovid,
+  } = useCasesCovid()
 
   useEffect(() => {
     loadInformationsCovid()
@@ -62,10 +67,11 @@ export function Home() {
       </ContainerCards>
 
       <ContainerMessageAlert>
-        {loading && <h1>Carregando...</h1>}
-        {!loading && casesCovid?.length === 0 && (
-          <h1>Nenhum resultado encontrado...</h1>
+        {loading && <p>Carregando...</p>}
+        {!loading && !error && casesCovid?.length === 0 && (
+          <p>Nenhum resultado encontrado...</p>
         )}
+        {error && <p>{error}...</p>}
       </ContainerMessageAlert>
     </Container>
   )

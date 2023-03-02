@@ -71,19 +71,22 @@ export const ContainerCards = styled.div`
 
 export const ContainerMessageAlert = styled.div`
   width: 100%;
-  max-width: 826px;
+  max-width: 786px;
   height: auto;
   margin: auto;
-  padding: 20px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.white};
+  box-shadow: 0px 2px 7px -1px ${({ theme }) => theme['gray-100']};
 
-  h1 {
+  p {
     width: 100%;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
-    color: ${(props) => props.theme['gray-200']};
+    padding: 20px;
+    color: ${(props) => props.theme['red-100']};
   }
 `

@@ -3,6 +3,7 @@ import { useState } from 'react'
 export const useCasesCovid = () => {
   const [casesCovid, setCasesCovid] = useState([])
   const [casesCovidData, setCasesCovidData] = useState([])
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
   function loadInformationsCovid() {
@@ -14,20 +15,21 @@ export const useCasesCovid = () => {
       fetch('https://api.covid19api.com/summary', { cache: 'no-store' })
         .then((response) => response.json())
         .then((data) => {
-          console.log('dataaa', data)
-
           if (!data?.Countries?.length) {
+            setError(data?.Message)
             return
           }
 
           data?.Countries?.sort((a, b) => {
             return b.TotalConfirmed - a.TotalConfirmed
           })
+
+          setError(false)
           setCasesCovid(data.Countries)
           setCasesCovidData(data.Countries)
         })
     } catch (error) {
-      console.log('error', error)
+      setError('Ocorreu um erro ao carregar os dados.')
     } finally {
       setLoading(false)
     }
@@ -43,12 +45,11 @@ export const useCasesCovid = () => {
       const data = casesCovidData.filter((item) => {
         return item.Country.toLowerCase().includes(country.toLowerCase())
       })
-
       setCasesCovid(data)
     } catch (error) {
       console.log('error', error)
     }
   }
 
-  return { casesCovid, loading, loadInformationsCovid, searchCasesCovid }
+  return { casesCovid, loading, error, loadInformationsCovid, searchCasesCovid }
 }
