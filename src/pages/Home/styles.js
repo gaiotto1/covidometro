@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
+  height: auto;
+  min-height: 100vh;
   background-color: ${(props) => props.theme['white-300']};
   overflow: hidden;
 `
@@ -65,4 +67,23 @@ export const ContainerCards = styled.div`
   height: auto;
   margin: 0 auto;
   padding: 0px 20px;
+`
+
+export const ContainerMessageAlert = styled.div`
+  width: 100%;
+  max-width: 826px;
+  height: auto;
+  margin: auto;
+  padding: 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+
+  h1 {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 500;
+    color: ${(props) => props.theme['gray-200']};
+  }
 `

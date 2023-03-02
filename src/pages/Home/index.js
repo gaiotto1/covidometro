@@ -1,38 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '../../components/Header'
 import { Card } from './components/Card'
 import { SearchForm } from './components/SearchForm'
+import { useCasesCovid } from './hooks/useCasesCovid'
 
 import {
   Container,
   ContainerTitle,
   WrapperTitleHome,
   ContainerCards,
+  ContainerMessageAlert,
 } from './styles'
 
 import doctorsSvg from '../../assets/doctors.svg'
 
 export function Home() {
-  const data = [
-    {
-      title: 'Brasil',
-      totalCases: '1.000.000',
-      deaths: '100.000',
-      fatality: '10',
-    },
-    {
-      title: 'Brasil',
-      totalCases: '1.000.000',
-      deaths: '100.000',
-      fatality: '10',
-    },
-    {
-      title: 'Brasil',
-      totalCases: '1.000.000',
-      deaths: '100.000',
-      fatality: '10',
-    },
-  ]
+  const { casesCovid, loading, loadInformationsCovid, searchCasesCovid } =
+    useCasesCovid()
+
+  useEffect(() => {
+    loadInformationsCovid()
+  }, [])
+
+  function handleSearchCasesCovid(country) {
+    searchCasesCovid(country)
+  }
 
   return (
     <Container>
@@ -53,19 +45,28 @@ export function Home() {
         </WrapperTitleHome>
       </ContainerTitle>
 
-      <SearchForm />
+      <SearchForm handleSearchCasesCovid={handleSearchCasesCovid} />
 
       <ContainerCards>
-        {data.map((item, index) => (
+        {casesCovid?.map((item, index) => (
           <Card
             key={index}
-            title={item.title}
-            totalCases={item.totalCases}
-            deaths={item.deaths}
-            fatality={item.fatality}
+            title={item.Country}
+            totalCases={parseFloat(item.TotalConfirmed).toLocaleString()}
+            deaths={parseFloat(item.TotalDeaths).toLocaleString()}
+            fatality={((item.TotalDeaths / item.TotalConfirmed) * 100).toFixed(
+              2,
+            )}
           />
         ))}
       </ContainerCards>
+
+      <ContainerMessageAlert>
+        {loading && <h1>Carregando...</h1>}
+        {!loading && casesCovid?.length === 0 && (
+          <h1>Nenhum resultado encontrado...</h1>
+        )}
+      </ContainerMessageAlert>
     </Container>
   )
 }

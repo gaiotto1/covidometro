@@ -3,9 +3,15 @@ import React from 'react'
 
 import { ContainerForm, Wrapper, ContainerInput } from './styles'
 
-export const SearchForm = () => {
+export const SearchForm = ({ handleSearchCasesCovid }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const country = event.target.country.value
+    handleSearchCasesCovid(country)
+  }
+
   return (
-    <ContainerForm>
+    <ContainerForm onSubmit={handleSubmit}>
       <Wrapper>
         <h1>Filtrar dados sobre um país</h1>
 
