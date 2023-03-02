@@ -11,12 +11,12 @@ export const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.white};
     color: ${({ theme }) => theme['gray-200']};
     -webkit-font-smoothing: antialiased;
-    font-family: 'Baloo 2', cursive;
+    font-family: 'Spectral', serif;
     margin: 0;
     padding: 0;
   }
 
   input, button, textarea {
-    font-family: 'Baloo 2', cursive;
+    font-family: 'Spectral', serif;
   }
 `
