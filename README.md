@@ -23,4 +23,4 @@ $ npm test
 
 # Acessando a aplicação:
 
-É possível acessar a aplicação online através do <a>link.</a>
+É possível acessar a aplicação online através do <a href="https://covidometro-a150e.web.app/" target="_blank">link.</a>
