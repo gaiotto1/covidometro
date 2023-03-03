@@ -4,6 +4,7 @@ import { Card } from './components/Card'
 import { SearchForm } from './components/SearchForm'
 import { Loading } from '../../components/Loading'
 import { useCasesCovid } from './hooks/useCasesCovid'
+import { numberFormatter } from '../../utils/formatter'
 
 import {
   Container,
@@ -58,8 +59,8 @@ export function Home() {
           <Card
             key={index}
             title={item.Country}
-            totalCases={parseFloat(item.TotalConfirmed).toLocaleString()}
-            deaths={parseFloat(item.TotalDeaths).toLocaleString()}
+            totalCases={numberFormatter(item.TotalConfirmed)}
+            deaths={numberFormatter(item.TotalDeaths)}
             slug={item.Slug}
             fatality={((item.TotalDeaths / item.TotalConfirmed) * 100).toFixed(
               2,

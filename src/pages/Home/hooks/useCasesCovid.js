@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { dateFormatter, numberFormatter } from '../../../utils/formatter'
+
 export const useCasesCovid = () => {
   const [casesCovid, setCasesCovid] = useState([])
   const [casesCovidData, setCasesCovidData] = useState([])
@@ -73,8 +75,8 @@ export const useCasesCovid = () => {
           const lastFiveDays = data.slice(-5)
           const totalCasesLastDays = lastFiveDays.map((item) => {
             return {
-              date: new Date(item.Date).toLocaleDateString('pt-BR'),
-              totalCases: parseFloat(item.Cases).toLocaleString(),
+              date: dateFormatter(item.Date),
+              totalCases: numberFormatter(item.Cases),
             }
           })
 
