@@ -6,7 +6,7 @@ import { ContainerLoading } from './styles'
 
 export function Loading() {
   return (
-    <ContainerLoading>
+    <ContainerLoading data-testid="linewave">
       <LineWave
         height="100"
         width="100"

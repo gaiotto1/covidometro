@@ -6,12 +6,12 @@ import logoImg from '../../assets/logo.png'
 export function Header() {
   return (
     <>
-      <HeaderContainer>
+      <HeaderContainer data-testid="header-container">
         <HeaderContent>
           <img src={logoImg} alt="" />
         </HeaderContent>
       </HeaderContainer>
-      <HeaderEmpty />
+      <HeaderEmpty data-testid="header-empty" />
     </>
   )
 }

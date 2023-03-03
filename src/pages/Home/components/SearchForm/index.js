@@ -20,10 +20,15 @@ export const SearchForm = ({ handleSearchCasesCovid }) => {
             type="text"
             id="country"
             placeholder="Digite o nome de um país"
+            data-testid="input-search"
           />
 
-          <button type="submit">
-            <MagnifyingGlass size={18} color="#EE6261" />
+          <button type="submit" data-testid="button-search">
+            <MagnifyingGlass
+              size={18}
+              color="#EE6261"
+              data-testid="magnifying-glass"
+            />
           </button>
         </ContainerInput>
       </Wrapper>

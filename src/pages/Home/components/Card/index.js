@@ -51,7 +51,10 @@ export const Card = ({ title, totalCases, deaths, fatality, slug }) => {
         {error && !loading && (
           <ContainerError>
             <p>{error}</p>
-            <button onClick={() => handleUpdateTotalCasesLastDays()}>
+            <button
+              onClick={() => handleUpdateTotalCasesLastDays()}
+              data-testid="button-update"
+            >
               Atualizar
             </button>
           </ContainerError>
