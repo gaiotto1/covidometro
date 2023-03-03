@@ -5,6 +5,7 @@ import { SearchForm } from './components/SearchForm'
 import { Loading } from '../../components/Loading'
 import { useCasesCovid } from './hooks/useCasesCovid'
 import { numberFormatter } from '../../utils/formatter'
+import { calculateFatalityRate } from '../../utils/fatalityRate'
 
 import {
   Container,
@@ -62,8 +63,9 @@ export function Home() {
             totalCases={numberFormatter(item.TotalConfirmed)}
             deaths={numberFormatter(item.TotalDeaths)}
             slug={item.Slug}
-            fatality={((item.TotalDeaths / item.TotalConfirmed) * 100).toFixed(
-              2,
+            fatality={calculateFatalityRate(
+              item.TotalDeaths,
+              item.TotalConfirmed,
             )}
           />
         ))}
