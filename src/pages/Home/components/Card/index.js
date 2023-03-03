@@ -1,15 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { LineWave } from 'react-loader-spinner'
+import React, { useState } from 'react'
 
 import { useCasesCovid } from '../../hooks/useCasesCovid'
 
-import {
-  ContainerCard,
-  Box,
-  ContainerList,
-  ContainerLoading,
-  ContainerError,
-} from './styles'
+import { Loading } from '../../../../components/Loading'
+import { ContainerCard, Box, ContainerList, ContainerError } from './styles'
 
 export const Card = ({ title, totalCases, deaths, fatality, slug }) => {
   const [enabled, setEnabled] = useState(false)
@@ -27,10 +21,6 @@ export const Card = ({ title, totalCases, deaths, fatality, slug }) => {
   async function handleUpdateTotalCasesLastDays() {
     await getTotalCasesLastDays(slug)
   }
-
-  useEffect(() => {
-    console.log('loading', loading)
-  }, [loading])
 
   return (
     <ContainerCard>
@@ -56,17 +46,7 @@ export const Card = ({ title, totalCases, deaths, fatality, slug }) => {
       <ContainerList enabled={enabled}>
         <h1>Total de casos dos últimos 5 dias:</h1>
 
-        {loading && (
-          <ContainerLoading>
-            <LineWave
-              height="100"
-              width="100"
-              color="#EE6261"
-              ariaLabel="line-wave"
-              visible={true}
-            />
-          </ContainerLoading>
-        )}
+        {loading && <Loading />}
 
         {error && !loading && (
           <ContainerError>

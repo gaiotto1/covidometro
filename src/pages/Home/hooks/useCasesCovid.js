@@ -7,13 +7,13 @@ export const useCasesCovid = () => {
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
-  function loadInformationsCovid() {
+  async function loadInformationsCovid() {
     try {
       setCasesCovid([])
       setCasesCovidData([])
       setLoading(true)
 
-      fetch('https://api.covid19api.com/summary', { cache: 'no-store' })
+      await fetch('https://api.covid19api.com/summary')
         .then((response) => response.json())
         .then((data) => {
           if (!data?.Countries?.length) {
@@ -41,7 +41,6 @@ export const useCasesCovid = () => {
     try {
       if (country.trim() === '') {
         loadInformationsCovid()
-        console.info('aaa')
         return
       }
 

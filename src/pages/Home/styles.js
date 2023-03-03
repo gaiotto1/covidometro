@@ -70,7 +70,7 @@ export const ContainerCards = styled.div`
 `
 
 export const ContainerMessageAlert = styled.div`
-  width: 100%;
+  width: calc(100% - 40px);
   max-width: 786px;
   height: auto;
   margin: auto;
@@ -78,12 +78,16 @@ export const ContainerMessageAlert = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  padding: 50px 20px;
   border-radius: 6px;
   background-color: ${({ theme }) => theme.white};
-  box-shadow: 0px 2px 7px -1px ${({ theme }) => theme['gray-100']};
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 
   p {
-    font-size: 1.5rem;
+    width: 100%;
+    text-align: center;
+
+    font-size: 1.2rem;
     font-weight: 500;
     color: ${(props) => props.theme['red-100']};
   }

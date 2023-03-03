@@ -119,24 +119,6 @@ export const ContainerList = styled.ul`
   }
 `
 
-export const ContainerLoading = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  div {
-    margin-top: -30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    svg {
-      margin-left: 31px;
-    }
-  }
-`
-
 export const ContainerError = styled.div`
   width: 100%;
   display: flex;

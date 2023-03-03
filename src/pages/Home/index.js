@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Header } from '../../components/Header'
 import { Card } from './components/Card'
 import { SearchForm } from './components/SearchForm'
+import { Loading } from '../../components/Loading'
 import { useCasesCovid } from './hooks/useCasesCovid'
 
 import {
@@ -67,13 +68,21 @@ export function Home() {
         ))}
       </ContainerCards>
 
-      <ContainerMessageAlert>
-        {loading && <p>Carregando...</p>}
-        {!loading && !error && casesCovid?.length === 0 && (
+      {loading && <Loading />}
+
+      {!loading && error && (
+        <ContainerMessageAlert>
+          <p>
+            Falha ao carregar os dados... <br /> {error}
+          </p>
+        </ContainerMessageAlert>
+      )}
+
+      {!loading && !error && casesCovid?.length === 0 && (
+        <ContainerMessageAlert>
           <p>Nenhum resultado encontrado...</p>
-        )}
-        {error && <p>{error}...</p>}
-      </ContainerMessageAlert>
+        </ContainerMessageAlert>
+      )}
     </Container>
   )
 }
