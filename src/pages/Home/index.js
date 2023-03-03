@@ -59,6 +59,7 @@ export function Home() {
             title={item.Country}
             totalCases={parseFloat(item.TotalConfirmed).toLocaleString()}
             deaths={parseFloat(item.TotalDeaths).toLocaleString()}
+            slug={item.Slug}
             fatality={((item.TotalDeaths / item.TotalConfirmed) * 100).toFixed(
               2,
             )}

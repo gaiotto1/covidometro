@@ -3,6 +3,7 @@ import { useState } from 'react'
 export const useCasesCovid = () => {
   const [casesCovid, setCasesCovid] = useState([])
   const [casesCovidData, setCasesCovidData] = useState([])
+  const [totalCasesLastDays, setTotalCasesLastDays] = useState([])
   const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
 
@@ -20,13 +21,14 @@ export const useCasesCovid = () => {
             return
           }
 
-          data?.Countries?.sort((a, b) => {
+          const newDataCountries = data?.Countries?.sort((a, b) => {
             return b.TotalConfirmed - a.TotalConfirmed
           })
 
+          setCasesCovid(newDataCountries)
+          setCasesCovidData(newDataCountries)
+
           setError(false)
-          setCasesCovid(data.Countries)
-          setCasesCovidData(data.Countries)
         })
     } catch (error) {
       setError('Ocorreu um erro ao carregar os dados.')
@@ -39,6 +41,7 @@ export const useCasesCovid = () => {
     try {
       if (country.trim() === '') {
         loadInformationsCovid()
+        console.info('aaa')
         return
       }
 
@@ -51,5 +54,48 @@ export const useCasesCovid = () => {
     }
   }
 
-  return { casesCovid, loading, error, loadInformationsCovid, searchCasesCovid }
+  async function getTotalCasesLastDays(country) {
+    const messageError =
+      'Ocorreu um erro ao carregar os dados. Tente novamente em alguns minutos.'
+
+    try {
+      setLoading(true)
+
+      await fetch(
+        `https://api.covid19api.com/total/dayone/country/${country}/status/confirmed`,
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          if (!data?.length) {
+            setError(messageError)
+            return
+          }
+
+          const lastFiveDays = data.slice(-5)
+          const totalCasesLastDays = lastFiveDays.map((item) => {
+            return {
+              date: new Date(item.Date).toLocaleDateString('pt-BR'),
+              totalCases: parseFloat(item.Cases).toLocaleString(),
+            }
+          })
+
+          setTotalCasesLastDays(totalCasesLastDays)
+          setError(false)
+        })
+    } catch (error) {
+      setError(messageError)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return {
+    casesCovid,
+    loading,
+    error,
+    loadInformationsCovid,
+    searchCasesCovid,
+    getTotalCasesLastDays,
+    totalCasesLastDays,
+  }
 }

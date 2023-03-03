@@ -83,10 +83,8 @@ export const ContainerMessageAlert = styled.div`
   box-shadow: 0px 2px 7px -1px ${({ theme }) => theme['gray-100']};
 
   p {
-    width: 100%;
     font-size: 1.5rem;
     font-weight: 500;
-    padding: 20px;
     color: ${(props) => props.theme['red-100']};
   }
 `
